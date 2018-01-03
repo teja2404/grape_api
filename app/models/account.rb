@@ -30,4 +30,4 @@ class Account < ApplicationRecord
     end
     update_attribute(:status, false)
   end
-  end
+  end 
