@@ -3,6 +3,7 @@ class Customer < ApplicationRecord
   belongs_to :branch
 
   validates_presence_of :name, :email, :phone
+  validates_uniqueness_of :name,:email
   validates_format_of :email, :with => /^([a-zA-Z0-9_.'-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/i, :message => "Email is Invalid", :multiline => true
 
   def self.add(cust_attrs)
@@ -25,7 +26,6 @@ class Customer < ApplicationRecord
   def activate()
     if self.status == true
       raise ActiveRecord::RecordInvalid
-
     end
     update_attribute(:status, true)
   end

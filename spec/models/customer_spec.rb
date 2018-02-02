@@ -42,9 +42,7 @@ RSpec.describe Customer, :type => :model do
   end
   context "customer deactivate test cases" do
     it "should not deactivate customer if customer is already deactivated" do
-      customer = Customer.add(name: "fbfb", email: "ad@k.com", phone: 123456, branch_id: @branch.id)
-      customer.deactivate()
-      customer.reload
+      customer = Customer.add(name: "fbfb", email: "ad@k.com", phone: 123456, branch_id: @branch.id,status:false)
       expect{customer.deactivate()}.to raise_error ActiveRecord::RecordInvalid
 
     end
@@ -60,14 +58,11 @@ RSpec.describe Customer, :type => :model do
 
     it "should not activate customer if customer is already activated" do
       customer = Customer.add(name: "fbfb", email: "ad@k.com", phone: 123456, branch_id: @branch.id)
-      customer.activate()
-      customer.reload
       expect{customer.activate()}.to raise_error ActiveRecord::RecordInvalid
     end
 
     it "should activate customer" do
       customer = Customer.add(name: "fbfb", email: "ad@k.com", phone: 123456, branch_id: @branch.id)
-      customer.activate()
       expect(customer.status).to eq true
     end
 

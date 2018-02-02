@@ -1,4 +1,6 @@
 class Transaction < ApplicationRecord
-  belongs_to :account
+
+  def self.list
+    Transaction.all
+  end
 end
- 
