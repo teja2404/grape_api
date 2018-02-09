@@ -1,5 +1,6 @@
 module Bank
   class AccountsAPI < Grape::API
+    route_param :branch_id,type: String do
     namespace :account do
       route_param :id,type: Integer do
         after_validation do
@@ -52,7 +53,6 @@ module Bank
       desc 'create account'
       params do
         requires :customer_id,type:Integer,allow_blank: false
-        requires :branch_id,type:Integer,allow_blank: false
         optional :account_type,type:String,allow_blank: false
       end
 
@@ -68,6 +68,8 @@ module Bank
     desc 'list all accounts'
     get '/accounts' do
       Account.all
+    end
+
     end
   end
 end

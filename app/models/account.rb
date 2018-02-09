@@ -43,8 +43,8 @@ class Account < ApplicationRecord
     end
     frm_account.withdraw(acc_attr)
     to_account.deposit(acc_attr)
-    Transaction.create(details: "#{acc_attr[:amount]} rupees debited from your account",account_id: frm_account.id)
     Transaction.create(details: "#{acc_attr[:amount]} rupees credited to your account",account_id: to_account.id)
+    Transaction.create(details: "#{acc_attr[:amount]} rupees debited from your account",account_id: frm_account.id)
 
   end
 

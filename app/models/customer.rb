@@ -8,8 +8,9 @@ class Customer < ApplicationRecord
 
   def self.add(cust_attrs)
     customer = Customer.new(cust_attrs)
+    debugger
     customer.save!
-    customer
+    customer || customer.errors.messages
   end
 
   def update_customer(cust_attrs)
