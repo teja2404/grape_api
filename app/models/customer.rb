@@ -8,8 +8,8 @@ class Customer < ApplicationRecord
 
   def self.add(cust_attrs)
     customer = Customer.new(cust_attrs)
-    debugger
     customer.save!
+    customer.create_account(account_type:"saving",branch_id: customer.branch_id) if customer
     customer || customer.errors.messages
   end
 

@@ -17,6 +17,7 @@ class Account < ApplicationRecord
 
     end
     update_attribute(:balance,BigDecimal.new(self.balance.to_s) - BigDecimal.new(acc_attr[:amount].to_s))
+    Transaction.create(details: "#{acc_attr[:amount]} rupees debited from your account",account_id: id)
   end
 
   def deposit(acc_attr)
@@ -25,6 +26,7 @@ class Account < ApplicationRecord
 
     end
     update_attribute(:balance,BigDecimal.new(self.balance.to_s) + BigDecimal.new(acc_attr[:amount].to_s))
+    Transaction.create(details: "#{acc_attr[:amount]} rupees credited to your account",account_id: id)
   end
 
   def deactivate()
