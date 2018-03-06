@@ -37,6 +37,12 @@ module Bank
           @account.activate
         end
 
+        desc 'list all transactions of account'
+        get '/transactions' do
+          @account.transactions()
+        end
+
+
         desc 'transfer ammount'
 
         params do

@@ -56,4 +56,11 @@ class Account < ApplicationRecord
     end
     update_attribute(:status, true)
   end
+
+  def transactions()
+    if self.status == false
+      raise ActiveRecord::RecordInvalid
+    end
+    Transaction.where("account_id =?",self.id)
+  end
 end
